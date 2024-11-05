@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hello Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fafafa;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      color: #333;
+    }
+    .container {
+      margin-top: 20%;
+    }
+    input[type="text"] {
+      padding: 10px;
+      font-size: 1em;
+      width: 200px;
+      margin-bottom: 10px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 1em;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    p {
+      margin-top: 20px;
+      font-size: 1.2em;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Enter your name</h1>
+    <input type="text" id="nameInput" placeholder="Your name here" />
+    <button onclick="greetUser()">Say Hello!</button>
+
+    <p id="greetingMessage"></p>
+  </div>
+
+  <script>
+    function greetUser() {
+      // Get the input value
+      const name = document.getElementById('nameInput').value;
+
+      // If the user provided a name, create the greeting
+      if (name) {
+        document.getElementById('greetingMessage').innerText = `Hello, ${name}!`;
+      } else {
+        document.getElementById('greetingMessage').innerText = "Please enter your name!";
+      }
+    }
+  </script>
+</body>
+</html>
