@@ -51,6 +51,7 @@
             font-size: 1.2rem;
             transform-origin: 50% 100%;
             background-color: rgba(255, 255, 255, 0.8);
+            transition: transform 4s ease-out; /* Ensure names transition smoothly */
         }
 
         /* Style the spin button */
@@ -137,7 +138,7 @@
                 const nameElement = document.createElement('div');
                 nameElement.classList.add('name');
                 nameElement.textContent = name;
-                nameElement.style.transform = `rotate(${index * angleStep}deg)`;
+                nameElement.style.transform = `rotate(${index * angleStep}deg) translateY(-140px)`; // Position around the circle
                 wheel.appendChild(nameElement);
             });
         }
@@ -153,6 +154,7 @@
             
             // Spin the wheel with a random degree between 3600 and 3960
             var randomDeg = Math.floor(Math.random() * 360) + 3600;  
+            wheel.style.transition = 'transform 4s ease-out'; // Smooth transition for the spin
             wheel.style.transform = 'rotate(' + randomDeg + 'deg)';
             
             // After spinning, wait for 4 seconds, then determine the winner
