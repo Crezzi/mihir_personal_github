@@ -35,7 +35,6 @@
             border-radius: 50%;
             background-color: #ddd;
             position: relative;
-            overflow: hidden;
             margin: 20px auto;
             display: flex;
             justify-content: center;
@@ -47,10 +46,10 @@
             position: absolute;
             width: 100%;
             text-align: center;
-            padding: 20px;
             font-size: 1.2rem;
             transform-origin: 50% 100%;
             background-color: rgba(255, 255, 255, 0.8);
+            padding: 10px;
             transition: transform 4s ease-out; /* Ensure names transition smoothly */
         }
 
@@ -130,7 +129,7 @@
             const wheel = document.getElementById('wheel');
             wheel.innerHTML = ''; // Clear the wheel before updating
             
-            // Calculate the angle for each name
+            // Calculate the angle for each name (dividing the circle into sections)
             const angleStep = 360 / names.length;
             
             // Create a div for each name and position it in the wheel
@@ -138,7 +137,9 @@
                 const nameElement = document.createElement('div');
                 nameElement.classList.add('name');
                 nameElement.textContent = name;
-                nameElement.style.transform = `rotate(${index * angleStep}deg) translateY(-140px)`; // Position around the circle
+
+                // Position names in a circular fashion (like a beach ball slice)
+                nameElement.style.transform = `rotate(${index * angleStep}deg) translateY(-130px) rotate(-${index * angleStep}deg)`;
                 wheel.appendChild(nameElement);
             });
         }
@@ -154,6 +155,8 @@
             
             // Spin the wheel with a random degree between 3600 and 3960
             var randomDeg = Math.floor(Math.random() * 360) + 3600;  
+            
+            // Apply the rotation to the wheel
             wheel.style.transition = 'transform 4s ease-out'; // Smooth transition for the spin
             wheel.style.transform = 'rotate(' + randomDeg + 'deg)';
             
