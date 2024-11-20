@@ -30,8 +30,8 @@
         }
 
         .wheel {
-            width: 300px;
-            height: 300px;
+            width: 500px; /* Increased wheel size */
+            height: 500px; /* Increased wheel size */
             border-radius: 50%;
             background-color: #ddd;
             position: relative;
@@ -48,9 +48,10 @@
             text-align: center;
             font-size: 1.2rem;
             transform-origin: 50% 100%;
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 10px;
-            transition: transform 4s ease-out; /* Ensure names transition smoothly */
+            background-color: transparent; /* Removed the background */
+            padding: 0; /* Removed padding */
+            color: black; /* Set text color */
+            transition: transform 4s ease-out; /* Smooth transition for names */
         }
 
         /* Style the spin button */
@@ -139,7 +140,7 @@
                 nameElement.textContent = name;
 
                 // Position names in a circular fashion (like a beach ball slice)
-                nameElement.style.transform = `rotate(${index * angleStep}deg) translateY(-130px) rotate(-${index * angleStep}deg)`;
+                nameElement.style.transform = `rotate(${index * angleStep}deg) translateY(-200px) rotate(-${index * angleStep}deg)`;
                 wheel.appendChild(nameElement);
             });
         }
@@ -162,8 +163,13 @@
             
             // After spinning, wait for 4 seconds, then determine the winner
             setTimeout(function() {
-                var selectedIndex = Math.floor((randomDeg % 360) / (360 / names.length));  // Calculate the selected name based on angle
-                var result = names[selectedIndex]; // Get the selected name
+                // Calculate the selected index based on the angle at the top
+                var finalAngle = randomDeg % 360; 
+                var anglePerName = 360 / names.length;
+                var selectedIndex = Math.floor((finalAngle + anglePerName / 2) / anglePerName);  // Adjust for top position
+                
+                // Get the selected name based on the angle
+                var result = names[selectedIndex];
                 document.getElementById('result').textContent = 'The winner is: ' + result;
             }, 4000); // Timeout matches the duration of the spin (4s)
         });
